@@ -1,0 +1,24 @@
+{
+    "name": "ns/file-upload-bundle",
+    "type": "symfony-bundle",
+    "description": "This bundle provides a simple file upload bundle",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Nathanael d. Noblet",
+            "email": "nathanael@noblet.ca"
+        }
+    ],
+
+    "require": {
+        "php":                          ">=5.5",
+	"symfony/symfony":              "^2.7|^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0"
+    },
+    "autoload": {
+        "psr-4": { "NS\\FileUploadBundle\\": "" }
+    }
+}

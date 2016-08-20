@@ -1,0 +1,38 @@
+parameters:
+  ns_file.configs: []
+
+services:
+  ns_file.upload_handler:
+    class: NS\FileUploadBundle\Upload\UploadHandler
+    arguments: [ "%kernel.root_dir%"]
+
+  ns_file.twig.file_url:
+    class: NS\FileUploadBundle\Twig\FileUrlTwigExtension
+    arguments: [ "@ns_file.local" ]
+    tags:
+      - { name: twig.extension }
+
+  ns_file.directory_namer.hash:
+    class: NS\FileUploadBundle\Namer\HashDirectoryNamer
+
+  ns_file.url_generator.default:
+    alias: ns_file.local
+
+  ns_file.local:
+    class: NS\FileUploadBundle\UrlGenerator\Local
+    arguments: [ "@assets.packages" ]
+
+  ns_file.namer.default:
+    alias: ns_file.namer.original_random
+
+  ns_file.namer.unique_hash:
+    class: NS\FileUploadBundle\Namer\UniqueHashNamer
+
+  ns_file.namer.client_original:
+    class: NS\FileUploadBundle\Namer\OriginalNamer
+
+  ns_file.namer.random:
+    class: NS\FileUploadBundle\Namer\RandomNamer
+
+  ns_file.namer.original_random:
+    class: NS\FileUploadBundle\Namer\OriginalRandomNamer
