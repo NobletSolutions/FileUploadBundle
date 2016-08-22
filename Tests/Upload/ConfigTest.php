@@ -16,6 +16,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
+    public function testInvalidConfig()
+    {
+        self::setExpectedException('NS\FileUploadBundle\Exceptions\InvalidConfigurationException','You must provide either a destination path or directory namer');
+        $namer = new UniqueHashNamer();
+        new Config($namer);
+    }
+
     public function testOnlyDestination()
     {
         $namer = new UniqueHashNamer();

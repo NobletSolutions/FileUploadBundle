@@ -15,7 +15,10 @@
 
     <filter>
         <whitelist>
-            <directory>../src</directory>
+            <directory>Upload</directory>
+            <directory>Namer</directory>
+            <directory>Twig</directory>
+            <directory>UrlGenerator</directory>
         </whitelist>
     </filter>
 </phpunit>
