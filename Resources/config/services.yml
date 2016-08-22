@@ -6,7 +6,7 @@ services:
     class: RandomLib\Factory
 
   ns_file.upload_handler:
-    class: NS\FileUploadBundle\Upload\UploadHandler
+    class: NS\FileUploadBundle\Upload\Handler
     arguments: [ "%kernel.root_dir%"]
 
   ns_file.twig.file_url:

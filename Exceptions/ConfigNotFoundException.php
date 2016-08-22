@@ -11,7 +11,7 @@ namespace NS\FileUploadBundle\Exceptions;
 class ConfigNotFoundException extends \RuntimeException
 {
     /**
-     * UploadConfigNotFoundException constructor.
+     * ConfigNotFoundException constructor.
      *
      * @param string $configName
      */

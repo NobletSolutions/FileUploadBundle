@@ -13,16 +13,16 @@ use NS\FileUploadBundle\Exceptions\UnableToHandleException;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadHandler
+class Handler
 {
-    /** @var UploadHandler[] */
+    /** @var Config[] */
     private $configs = [];
 
     /** @var string */
     private $rootDirectory;
 
     /**
-     * UploadHandler constructor.
+     * Handler constructor.
      * @param string $rootDir
      */
     public function __construct($rootDir)
@@ -31,12 +31,12 @@ class UploadHandler
     }
 
     /**
-     * @param $configName
-     * @param UploadConfig $config
+     * @param $name
+     * @param Config $config
      */
-    public function addConfig($configName, UploadConfig $config)
+    public function addConfig($name, Config $config)
     {
-        $this->configs[$configName] = $config;
+        $this->configs[$name] = $config;
     }
 
     /**

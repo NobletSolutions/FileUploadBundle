@@ -26,19 +26,19 @@ Only one of the second or third parameters are required, however both can be use
 ```
 # services.yml
 ns_file.applicant_uploads:
-  class: NS\FileUploadBundle\Handler\UploadConfig
+  class: NS\FileUploadBundle\Handler\Config
   arguments: [ "@ns_file.namer.default", "applicant-uploads", "@ns_file.directory_namer.hash" ]
   tags:
     - { name: ns.config, config_name: applicant }
 ```
 
 Given the above configuration. A file uploaded using this configuration would be stored
-in web/uploads/applicant-uploads/DATAHASH/ClientOriginalName_RANDSTR.ext 
+in web/uploads/applicant-uploads/HASH/ClientOriginalName_RANDSTR.ext 
 
 You are free to implement your own file and/or directory namers. Simply implement the
  NS\FileUploadBundle\Namer\FileNamerInterface or NS\FileUploadBundle\Namer\DirectoryNamerInterface.
  
-The bundle comes with the following namers:
+The bundle comes with the following file naming strategies.
 
 
 #### OriginalNamer

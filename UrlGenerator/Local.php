@@ -9,12 +9,12 @@
 namespace NS\FileUploadBundle\UrlGenerator;
 
 use NS\FileUploadBundle\Exceptions\ConfigNotFoundException;
-use NS\FileUploadBundle\Upload\UploadConfig;
+use NS\FileUploadBundle\Upload\Config;
 use Symfony\Component\Asset\Packages;
 
 class Local implements FileUrlGeneratorInterface
 {
-    /** @var UploadConfig[] */
+    /** @var Config[] */
     private $configs = [];
 
     /** @var Packages */
@@ -29,9 +29,13 @@ class Local implements FileUrlGeneratorInterface
         $this->packages = $packages;
     }
 
-    public function addConfig(UploadConfig $config)
+    /**
+     * @param string $name
+     * @param Config $config
+     */
+    public function addConfig($name, Config $config)
     {
-        $this->configs[$config->getName()] = $config;
+        $this->configs[$name] = $config;
     }
 
     /**

@@ -13,7 +13,7 @@ use NS\FileUploadBundle\Namer\DirectoryNamerInterface;
 use NS\FileUploadBundle\Namer\FileNamerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadConfig
+class Config
 {
     /** @var FileNamerInterface */
     private $namer;
@@ -25,7 +25,7 @@ class UploadConfig
     private $directoryNamer;
 
     /**
-     * UploadConfig constructor.
+     * Config constructor.
      * @param FileNamerInterface $namer
      * @param string|null $destination
      * @param DirectoryNamerInterface|null $directoryNamer
