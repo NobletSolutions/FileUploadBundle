@@ -23,7 +23,7 @@ services:
 
   ns_file.local:
     class: NS\FileUploadBundle\UrlGenerator\Local
-    arguments: [ "@assets.packages" ]
+    arguments: [ "%kernel.root_dir%", "@assets.packages" ]
 
   ns_file.namer.default:
     alias: ns_file.namer.original_random
