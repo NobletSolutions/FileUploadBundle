@@ -34,12 +34,12 @@ class ConfigCompilerPass implements CompilerPassInterface
             $urlGeneratorDefinition = $container->findDefinition('ns_file.url_generator.default');
 
             foreach ($taggedServices as $id => $tags) {
-                if (!isset($tags['config_name'])) {
+                if (!isset($tags[0]['config_name'])) {
                     throw new InvalidConfigurationException("Missing config_name");
                 }
 
-                $uploadDefinition->addMethodCall('addConfig', [$tags['config_name'], new Reference($id)]);
-                $urlGeneratorDefinition->addMethodCall('addConfig', [$tags['config_name'], new Reference($id)]);
+                $uploadDefinition->addMethodCall('addConfig', [$tags[0]['config_name'], new Reference($id)]);
+                $urlGeneratorDefinition->addMethodCall('addConfig', [$tags[0]['config_name'], new Reference($id)]);
             }
         }
     }
