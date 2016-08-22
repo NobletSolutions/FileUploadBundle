@@ -49,4 +49,13 @@ class Local implements FileUrlGeneratorInterface
 
         return $this->packages->getUrl(sprintf('uploads/%s/%s', $this->configs[$configName]->getPath($additionalData), $filename));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function generateFullPath($configName, $filename, $additionalData = null)
+    {
+        return sprintf('%s/%s', $this->webDirectory, $this->generate($configName, $filename, $additionalData));
+    }
 }
+

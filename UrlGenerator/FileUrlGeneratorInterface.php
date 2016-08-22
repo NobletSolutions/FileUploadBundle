@@ -17,4 +17,13 @@ interface FileUrlGeneratorInterface
      * @return string
      */
     public function generate($configName, $filename, $additionalData = null);
+
+    /**
+     * @param $configName
+     * @param $filename
+     * @param null $additionalData
+     * @return mixed
+     */
+    public function generateFullPath($configName, $filename, $additionalData = null);
 }
+
