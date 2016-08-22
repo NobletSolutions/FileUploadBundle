@@ -1,6 +1,6 @@
 <?php
 
-namespace NS\FileUploadBundle\Tests;
+namespace NS\FileUploadBundle\Tests\Namer;
 
 use NS\FileUploadBundle\Namer\HashDirectoryNamer;
 

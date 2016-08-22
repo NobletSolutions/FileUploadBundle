@@ -6,8 +6,7 @@
  * Time: 11:01 PM
  */
 
-namespace NS\FileUploadBundle\Tests;
-
+namespace NS\FileUploadBundle\Tests\Namer;
 
 use NS\FileUploadBundle\Namer\OriginalNamer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
