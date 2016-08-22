@@ -2,6 +2,9 @@ parameters:
   ns_file.configs: []
 
 services:
+  ns_file.random_lib_factory:
+    class: RandomLib\Factory
+
   ns_file.upload_handler:
     class: NS\FileUploadBundle\Upload\UploadHandler
     arguments: [ "%kernel.root_dir%"]
@@ -33,6 +36,8 @@ services:
 
   ns_file.namer.random:
     class: NS\FileUploadBundle\Namer\RandomNamer
+    arguments: [ "@ns_file.random_lib_factory" ]
 
   ns_file.namer.original_random:
     class: NS\FileUploadBundle\Namer\OriginalRandomNamer
+    arguments: [ "@ns_file.random_lib_factory" ]

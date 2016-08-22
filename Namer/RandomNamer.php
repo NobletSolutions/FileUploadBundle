@@ -8,15 +8,30 @@
 
 namespace NS\FileUploadBundle\Namer;
 
+use RandomLib\Factory;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use RandomLib\Generator;
-use RandomLib\Factory;
 
 class RandomNamer implements FileNamerInterface
 {
+    /**
+     * @var Factory
+     */
+    private $factory;
+
+    /** @var array */
     private $opts = [
         'length' => 6,
     ];
+
+    /**
+     * RandomNamer constructor.
+     * @param Factory $factory
+     */
+    public function __construct(Factory $factory)
+    {
+        $this->factory = $factory;
+    }
 
     /**
      * @param int $length of random portion of filename
@@ -28,8 +43,8 @@ class RandomNamer implements FileNamerInterface
 
     public function getName(UploadedFile $file)
     {
-        $factory = new Factory();
-        $generator = $factory->getMediumStrengthGenerator();
+        $generator = $this->factory->getMediumStrengthGenerator();
+
         return sprintf(
             '%s.%s',
             $generator->generateString($this->opts['length'], Generator::CHAR_ALNUM),

@@ -18,7 +18,7 @@ class UploadHandler
     /** @var UploadHandler[] */
     private $configs = [];
 
-    /** @var  string */
+    /** @var string */
     private $rootDirectory;
 
     /**
@@ -30,11 +30,22 @@ class UploadHandler
         $this->rootDirectory = $rootDir;
     }
 
-    public function addConfig(UploadConfig $config)
+    /**
+     * @param $configName
+     * @param UploadConfig $config
+     */
+    public function addConfig($configName, UploadConfig $config)
     {
-        $this->configs[$config->getName()] = $config;
+        $this->configs[$configName] = $config;
     }
 
+    /**
+     * @param $configName
+     * @param UploadedFile $file
+     * @param null $additionalData
+     *
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
     public function upload($configName, UploadedFile $file, $additionalData = null)
     {
         if (!isset($this->configs[$configName])) {

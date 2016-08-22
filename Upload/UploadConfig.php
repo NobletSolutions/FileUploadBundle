@@ -8,60 +8,57 @@
 
 namespace NS\FileUploadBundle\Upload;
 
+use NS\FileUploadBundle\Exceptions\InvalidConfigurationException;
 use NS\FileUploadBundle\Namer\DirectoryNamerInterface;
 use NS\FileUploadBundle\Namer\FileNamerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadConfig
 {
-    /** @var string */
-    private $name;
-
     /** @var FileNamerInterface */
     private $namer;
 
     /** @var string */
     private $destination;
 
+    /** @var DirectoryNamerInterface|null */
+    private $directoryNamer;
+
     /**
      * UploadConfig constructor.
-     * @param string $name
      * @param FileNamerInterface $namer
      * @param string|null $destination
      * @param DirectoryNamerInterface|null $directoryNamer
+     *
+     * @throws InvalidConfigurationException
      */
-    public function __construct($name, FileNamerInterface $namer, $destination = null, DirectoryNamerInterface $directoryNamer = null)
+    public function __construct(FileNamerInterface $namer, $destination = null, DirectoryNamerInterface $directoryNamer = null)
     {
-        $this->name = $name;
         $this->namer = $namer;
 
         if ($destination === null && $directoryNamer === null) {
-            throw new \RuntimeException('You must provide either a destination path or directory namer');
+            throw new InvalidConfigurationException('You must provide either a destination path or directory namer');
         }
 
         $this->destination = $destination;
-        $this->dirNamer = $directoryNamer;
+        $this->directoryNamer = $directoryNamer;
     }
 
     /**
+     * @param $additionalData
      * @return string
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
     public function getPath($additionalData)
     {
-        if($this->destination !== null && $this->dirNamer === null) {
+        if ($this->destination !== null && $this->directoryNamer === null) {
             return $this->destination;
         }
 
-        if ($this->destination === null && $this->dirNamer) {
-            return $this->dirNamer->getDirectory($additionalData);
+        if ($this->destination === null && $this->directoryNamer) {
+            return $this->directoryNamer->getDirectory($additionalData);
         }
 
-        return sprintf('%s/%s',$this->destination,$this->dirNamer->getDirectory($additionalData));
+        return sprintf('%s/%s', $this->destination, $this->directoryNamer->getDirectory($additionalData));
     }
 
     /**

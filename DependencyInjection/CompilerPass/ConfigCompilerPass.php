@@ -9,6 +9,7 @@
 namespace NS\FileUploadBundle\DependencyInjection\CompilerPass;
 
 
+use NS\FileUploadBundle\Exceptions\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -25,17 +26,20 @@ class ConfigCompilerPass implements CompilerPassInterface
             return;
         }
 
-
         // find all service IDs with the app.mail_transport tag
         $taggedServices = $container->findTaggedServiceIds('ns_file.config');
 
-        if(!empty($taggedServices)) {
+        if (!empty($taggedServices)) {
             $uploadDefinition = $container->findDefinition('ns_file.upload_handler');
             $urlGeneratorDefinition = $container->findDefinition('ns_file.url_generator.default');
 
             foreach ($taggedServices as $id => $tags) {
-                $uploadDefinition->addMethodCall('addConfig', [new Reference($id)]);
-                $urlGeneratorDefinition->addMethodCall('addConfig', [new Reference($id)]);
+                if (!isset($tags['config_name'])) {
+                    throw new InvalidConfigurationException("Missing config_name");
+                }
+
+                $uploadDefinition->addMethodCall('addConfig', [$tags['config_name'], new Reference($id)]);
+                $urlGeneratorDefinition->addMethodCall('addConfig', [$tags['config_name'], new Reference($id)]);
             }
         }
     }
