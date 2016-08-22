@@ -48,7 +48,7 @@ class Config
      * @param $additionalData
      * @return string
      */
-    public function getPath($additionalData)
+    public function getPath($additionalData = null)
     {
         if ($this->destination !== null && $this->directoryNamer === null) {
             return $this->destination;
