@@ -36,7 +36,7 @@ class FileUrlTwigExtension extends \Twig_Extension
 
     public function getFileUrl($configName, $filename, $additionalData = null)
     {
-        return $this->urlGenerator->generate($configName, $filename, $additionalData);
+        return $this->urlGenerator->generate($configName, rawurlencode($filename), $additionalData);
     }
 
     /**
