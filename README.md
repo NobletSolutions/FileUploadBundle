@@ -29,7 +29,7 @@ ns_file.applicant_uploads:
   class: NS\FileUploadBundle\Handler\Config
   arguments: [ "@ns_file.namer.default", "applicant-uploads", "@ns_file.directory_namer.hash" ]
   tags:
-    - { name: ns.config, config_name: applicant }
+    - { name: ns_file.config, config_name: applicant }
 ```
 
 Given the above configuration. A file uploaded using this configuration would be stored
