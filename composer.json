@@ -12,9 +12,9 @@
     ],
 
     "require": {
-        "php":                          ">=5.5",
-        "symfony/symfony":              "^2.3|^3.0",
-        "ircmaxell/random-lib": "^1.1"
+        "php":                   ">=5.5",
+        "symfony/symfony":       "^2.3|^3.0|^4.0",
+        "ircmaxell/random-lib":  "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.0"
