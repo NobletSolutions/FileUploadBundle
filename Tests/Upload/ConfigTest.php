@@ -1,24 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 2016-08-22
- * Time: 5:14 AM
- */
 
 namespace NS\FileUploadBundle\Tests\Upload;
-
 
 use NS\FileUploadBundle\Namer\HashDirectoryNamer;
 use NS\FileUploadBundle\Namer\UniqueHashNamer;
 use NS\FileUploadBundle\Upload\Config;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use NS\FileUploadBundle\Exceptions\InvalidConfigurationException;
+use NS\FileUploadBundle\Namer\FileNamerInterface;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
     public function testInvalidConfig()
     {
-        self::setExpectedException('NS\FileUploadBundle\Exceptions\InvalidConfigurationException','You must provide either a destination path or directory namer');
+        if(method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException(InvalidConfigurationException::class,'You must provide either a destination path or directory namer');
+        } else {
+            $this->expectException(InvalidConfigurationException::class);
+            $this->expectExceptionMessage('You must provide either a destination path or directory namer');
+        }
         $namer = new UniqueHashNamer();
         new Config($namer);
     }
@@ -54,7 +55,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testGetFilename()
     {
-        $namer = $this->getMock('NS\FileUploadBundle\Namer\FileNamerInterface');
+        $namer = $this->createMock(FileNamerInterface::class);
         $namer->expects($this->once())
             ->method('getName')
             ->willReturn('filename.jpg');

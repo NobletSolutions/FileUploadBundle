@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 11/01/17
- * Time: 11:07 AM
- */
 
 namespace NS\FileUploadBundle\Form\Type;
 

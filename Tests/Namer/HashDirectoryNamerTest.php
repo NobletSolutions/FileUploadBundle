@@ -3,14 +3,9 @@
 namespace NS\FileUploadBundle\Tests\Namer;
 
 use NS\FileUploadBundle\Namer\HashDirectoryNamer;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 2016-08-19
- * Time: 10:48 PM
- */
-class HashDirectoryNamerTest extends \PHPUnit_Framework_TestCase
+class HashDirectoryNamerTest extends TestCase
 {
     /**
      * @param $data

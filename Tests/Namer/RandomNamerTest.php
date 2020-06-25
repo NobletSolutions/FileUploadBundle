@@ -9,30 +9,25 @@
 namespace NS\FileUploadBundle\Tests\Namer;
 
 use NS\FileUploadBundle\Namer\RandomNamer;
+use PHPUnit\Framework\TestCase;
 use RandomLib\Factory;
 use RandomLib\Generator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class RandomNamerTest extends \PHPUnit_Framework_TestCase
+class RandomNamerTest extends TestCase
 {
     public function testGetName()
     {
-        $generator = $this->getMockBuilder('\RandomLib\Generator')
-            ->disableOriginalConstructor()
-            ->setMethods(['generateString'])
-            ->getMock();
+        $generator = $this->createMock(Generator::class);
 
-        $generator->expects($this->any())
+        $generator
             ->method('generateString')
             ->with(6,Generator::CHAR_ALNUM)
             ->willReturn('MediumStrengthRandomString');
 
         self::assertEquals('MediumStrengthRandomString',$generator->generateString(6,Generator::CHAR_ALNUM));
 
-        $factoryMock = $this->getMockBuilder(Factory::class)
-            ->disableOriginalConstructor()
-//            ->setMethods(['getMediumStrengthGenerator'])
-            ->getMock();
+        $factoryMock = $this->createMock(Factory::class);
 
         $factoryMock->expects($this->atLeast(2))
             ->method('getMediumStrengthGenerator')

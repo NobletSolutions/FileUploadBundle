@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 2016-08-19
- * Time: 11:01 PM
- */
 
 namespace NS\FileUploadBundle\Tests\Namer;
 
 use NS\FileUploadBundle\Namer\OriginalNamer;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class OriginalNamerTest extends \PHPUnit_Framework_TestCase
+class OriginalNamerTest extends TestCase
 {
     public function testGetName()
     {
@@ -20,5 +15,4 @@ class OriginalNamerTest extends \PHPUnit_Framework_TestCase
 
         self::assertEquals($file->getClientOriginalName(),$namer->getName($file));
     }
-
 }

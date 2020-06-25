@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 2016-08-21
- * Time: 8:14 PM
- */
 
 namespace NS\FileUploadBundle\Tests\Upload;
 
-class HandlerTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class HandlerTest extends TestCase
 {
     public function test()
     {

@@ -5,25 +5,18 @@ namespace NS\FileUploadBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
- */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder()
     {
+        // Instantiating a new TreeBuilder without a constructor arg is deprecated in SF4 and removed in SF5
+        if (method_exists(TreeBuilder::class, '__construct')) {
+            return new TreeBuilder('ns_file_upload');
+        }
+
+        // Included for backward-compatibility with SF3
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ns_file_upload');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
-
+        $treeBuilder->root('ns_file_upload');
         return $treeBuilder;
     }
 }
