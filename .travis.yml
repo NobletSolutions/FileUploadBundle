@@ -22,17 +22,17 @@ matrix:
 
     include:
         - php: 5.6
-          env: SYMFONY_VERSION=^3.2
+          env: SYMFONY_VERSION=^3.2 COMPOSER_MEMORY_LIMIT=-1
         - php: 7.3
-          env: SYMFONY_VERSION=^3.2
+          env: SYMFONY_VERSION=^3.2 COMPOSER_MEMORY_LIMIT=-1
         - php: 7.3
-          env: SYMFONY_VERSION=^4.0
+          env: SYMFONY_VERSION=^4.0 COMPOSER_MEMORY_LIMIT=-1
         - php: 7.4
-          env: SYMFONY_VERSION=^4.0
+          env: SYMFONY_VERSION=^4.0 COMPOSER_MEMORY_LIMIT=-1
         - php: 7.3
-          env: SYMFONY_VERSION=^5.0
+          env: SYMFONY_VERSION=^5.0 COMPOSER_MEMORY_LIMIT=-1
         - php: 7.4
-          env: SYMFONY_VERSION=^5.0
+          env: SYMFONY_VERSION=^5.0 COMPOSER_MEMORY_LIMIT=-1
 
 before_install:
     - travis_retry composer self-update
