@@ -3,6 +3,7 @@ VERSION 0  INITIAL RELEASE
 ==========================
 
    Version 0.1 - Initial release
+      25/06/2020 12:10  0.1.8  SF5 support
       13/06/2018 15:03  0.1.7  SF4 reqs
       13/06/2018 10:37  0.1.6  Added SF4 as supported version
       11/01/2017 11:12  0.1.5  Added FileType form type
