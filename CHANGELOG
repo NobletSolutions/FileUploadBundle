@@ -2,6 +2,9 @@
 VERSION 0  INITIAL RELEASE
 ==========================
 
+   Version 0.2 - Proper SF5 path configuration requirements
+      17/10/2020 16:18  0.2.0  initial release
+
    Version 0.1 - Initial release
       25/06/2020 12:10  0.1.8  SF5 support
       13/06/2018 15:03  0.1.7  SF4 reqs
