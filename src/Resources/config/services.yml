@@ -7,7 +7,7 @@ services:
 
   ns_file.upload_handler:
     class: NS\FileUploadBundle\Upload\Handler
-    arguments: [ "%kernel.root_dir%"]
+    arguments: [ "%ns_file.uploads_directory%"]
 
   ns_file.twig.file_url:
     class: NS\FileUploadBundle\Twig\FileUrlTwigExtension
@@ -23,7 +23,7 @@ services:
 
   ns_file.local:
     class: NS\FileUploadBundle\UrlGenerator\Local
-    arguments: [ "%kernel.root_dir%", "@assets.packages" ]
+    arguments: [ "%ns_file.web_directory%", "@assets.packages" ]
 
   ns_file.namer.default:
     alias: ns_file.namer.original_random

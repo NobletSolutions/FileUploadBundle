@@ -19,15 +19,14 @@ class Handler
     private $configs = [];
 
     /** @var string */
-    private $rootDirectory;
+    private $uploadDirectory;
 
     /**
-     * Handler constructor.
-     * @param string $rootDir
+     * @param string $uploadDirectory
      */
-    public function __construct($rootDir)
+    public function __construct($uploadDirectory)
     {
-        $this->rootDirectory = $rootDir;
+        $this->uploadDirectory = $uploadDirectory;
     }
 
     /**
@@ -55,7 +54,7 @@ class Handler
         $config = $this->configs[$configName];
 
         try {
-            $destinationDirectory = sprintf('%s/../web/uploads/%s', $this->rootDirectory, $config->getPath($additionalData));
+            $destinationDirectory = sprintf('%s/%s', $this->uploadDirectory, $config->getPath($additionalData));
             $destinationFileName = $config->getFilename($file);
             return $file->move($destinationDirectory, $destinationFileName);
         } catch (FileException $exception) {

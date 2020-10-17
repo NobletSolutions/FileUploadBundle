@@ -21,6 +21,8 @@ class NSFileUploadExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('ns_file.web_directory', $config['web_directory']);
+        $container->setParameter('ns_file.uploads_directory', $config['uploads_directory']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');

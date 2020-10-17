@@ -23,14 +23,9 @@ class Local implements FileUrlGeneratorInterface
     /** @var string */
     private $webDirectory;
 
-    /**
-     * Local constructor.
-     * @param string $kernelRootDir
-     * @param Packages $packages
-     */
-    public function __construct($kernelRootDir, Packages $packages)
+    public function __construct($webDir, Packages $packages)
     {
-        $this->webDirectory = $kernelRootDir.'/../web';
+        $this->webDirectory = $webDir;
         $this->packages = $packages;
     }
 
