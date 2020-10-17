@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
         return $builder;
     }
 
-    private function getBuilder(): TreeBuilder
+    private function getBuilder()
     {
         // Instantiating a new TreeBuilder without a constructor arg is deprecated in SF4 and removed in SF5
         if (method_exists(TreeBuilder::class, '__construct')) {
