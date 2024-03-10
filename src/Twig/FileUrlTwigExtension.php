@@ -9,8 +9,10 @@
 namespace NS\FileUploadBundle\Twig;
 
 use NS\FileUploadBundle\UrlGenerator\FileUrlGeneratorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class FileUrlTwigExtension extends \Twig_Extension
+class FileUrlTwigExtension extends AbstractExtension
 {
     /** @var FileUrlGeneratorInterface */
     private $urlGenerator;
@@ -30,7 +32,7 @@ class FileUrlTwigExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('file_path',[$this,'getFileUrl'],['is_safe'=>['html']])
+            new TwigFunction('file_path',[$this,'getFileUrl'],['is_safe'=>['html']])
         ];
     }
 
