@@ -2,6 +2,9 @@
 VERSION 0  INITIAL RELEASE
 ==========================
 
+   Version 0.4 - Support Twig 3.x
+      10/03/2024 00:25  0.4.0  initial release
+
    Version 0.3 - Allow SF6
       05/10/2022 22:53  0.3.0  initial release
 
