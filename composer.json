@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "symfony/http-foundation": "^3.0||^4.0||^5.0||^6.0",
-        "phpunit/phpunit": "^5.0||^7.0||^9.5"
+        "phpunit/phpunit": "^5.0||^7.0||^9.5",
+        "liip/rmt": "^1.7"
     },
     "autoload": {
         "psr-4": { "NS\\FileUploadBundle\\": "src" }
