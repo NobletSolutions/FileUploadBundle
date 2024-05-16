@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 3:54 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Namer;
 
@@ -14,32 +8,23 @@ use RandomLib\Generator;
 
 class OriginalRandomNamer implements FileNamerInterface
 {
-    /** @var Factory */
-    private $factory;
+    private Factory $factory;
 
-    /** @var array */
-    private $opts = [
+    private array $opts = [
         'length' => 6,
     ];
 
-    /**
-     * OriginalRandomNamer constructor.
-     * @param Factory $factory
-     */
     public function __construct(Factory $factory)
     {
         $this->factory = $factory;
     }
 
-    /**
-     * @param int $length of random portion of filename
-     */
-    public function setLength($length)
+    public function setLength(int $length): void
     {
-        $this->opts['length'] = (int) $length;
+        $this->opts['length'] = $length;
     }
 
-    public function getName(UploadedFile $file)
+    public function getName(UploadedFile $file): string
     {
         $generator = $this->factory->getMediumStrengthGenerator();
 

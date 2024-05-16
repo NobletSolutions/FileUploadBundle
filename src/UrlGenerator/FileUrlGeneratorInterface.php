@@ -1,29 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 1:01 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\UrlGenerator;
 
 interface FileUrlGeneratorInterface
 {
-    /**
-     * @param string $configName
-     * @param string $filename
-     * @param mixed|null $additionalData
-     * @return string
-     */
-    public function generate($configName, $filename, $additionalData = null);
+    public function generate(string $configName, string $filename, mixed $additionalData = null): string;
 
-    /**
-     * @param $configName
-     * @param $filename
-     * @param null $additionalData
-     * @return mixed
-     */
-    public function generateFullPath($configName, $filename, $additionalData = null);
+    public function generateFullPath(string $configName, string $filename, mixed $additionalData = null): string;
 }
 

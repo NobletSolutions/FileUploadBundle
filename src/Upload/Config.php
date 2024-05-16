@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 1:06 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Upload;
 
@@ -15,24 +9,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Config
 {
-    /** @var FileNamerInterface */
-    private $namer;
+    private FileNamerInterface $namer;
 
-    /** @var string */
-    private $destination;
+    private ?string $destination = null;
 
-    /** @var DirectoryNamerInterface|null */
-    private $directoryNamer;
+    private ?DirectoryNamerInterface $directoryNamer = null;
 
-    /**
-     * Config constructor.
-     * @param FileNamerInterface $namer
-     * @param string|null $destination
-     * @param DirectoryNamerInterface|null $directoryNamer
-     *
-     * @throws InvalidConfigurationException
-     */
-    public function __construct(FileNamerInterface $namer, $destination = null, DirectoryNamerInterface $directoryNamer = null)
+    public function __construct(FileNamerInterface $namer, ?string $destination = null, ?DirectoryNamerInterface $directoryNamer = null)
     {
         $this->namer = $namer;
 
@@ -40,7 +23,7 @@ class Config
             throw new InvalidConfigurationException('You must provide either a destination path or directory namer');
         }
 
-        $this->destination = $destination;
+        $this->destination    = $destination;
         $this->directoryNamer = $directoryNamer;
     }
 
@@ -48,7 +31,7 @@ class Config
      * @param $additionalData
      * @return string
      */
-    public function getPath($additionalData = null)
+    public function getPath($additionalData = null): string
     {
         if ($this->destination !== null && $this->directoryNamer === null) {
             return $this->destination;
@@ -61,11 +44,7 @@ class Config
         return sprintf('%s/%s', $this->destination, $this->directoryNamer->getDirectory($additionalData));
     }
 
-    /**
-     * @param UploadedFile $file
-     * @return mixed
-     */
-    public function getFilename(UploadedFile $file)
+    public function getFilename(UploadedFile $file): string
     {
         return $this->namer->getName($file);
     }

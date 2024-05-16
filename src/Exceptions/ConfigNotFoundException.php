@@ -1,21 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 4:07 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Exceptions;
 
 class ConfigNotFoundException extends \RuntimeException
 {
-    /**
-     * ConfigNotFoundException constructor.
-     *
-     * @param string $configName
-     */
-    public function __construct($configName)
+    public function __construct(string $configName)
     {
         parent::__construct(sprintf('Unable to location config "%s"',$configName));
     }

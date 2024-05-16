@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Tests\Namer;
 
@@ -12,13 +12,13 @@ class HashDirectoryNamerTest extends TestCase
      *
      * @dataProvider getDirectoryNames
      */
-    public function testGenerate($data)
+    public function testGenerate($data): void
     {
         $namer = new HashDirectoryNamer();
         self::assertEquals(sha1($data),$namer->getDirectory($data));
     }
 
-    public function getDirectoryNames()
+    public function getDirectoryNames(): array
     {
         return [
             ['something'],

@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 4:02 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\UrlGenerator;
 
@@ -15,33 +9,24 @@ use Symfony\Component\Asset\Packages;
 class Local implements FileUrlGeneratorInterface
 {
     /** @var Config[] */
-    private $configs = [];
+    private array $configs = [];
 
-    /** @var Packages */
-    private $packages;
+    private Packages $packages;
 
-    /** @var string */
-    private $webDirectory;
+    private string $webDirectory;
 
-    public function __construct($webDir, Packages $packages)
+    public function __construct(string $webDir, Packages $packages)
     {
         $this->webDirectory = $webDir;
-        $this->packages = $packages;
+        $this->packages     = $packages;
     }
 
-    /**
-     * @param string $name
-     * @param Config $config
-     */
-    public function addConfig($name, Config $config)
+    public function addConfig(string $name, Config $config): void
     {
         $this->configs[$name] = $config;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function generate($configName, $filename, $additionalData = null)
+    public function generate(string $configName, string $filename, mixed $additionalData = null): string
     {
         if (!isset($this->configs[$configName])) {
             throw new ConfigNotFoundException($configName);
@@ -50,10 +35,7 @@ class Local implements FileUrlGeneratorInterface
         return $this->packages->getUrl(sprintf('uploads/%s/%s', $this->configs[$configName]->getPath($additionalData), $filename));
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function generateFullPath($configName, $filename, $additionalData = null)
+    public function generateFullPath(string $configName, string $filename, mixed $additionalData = null): string
     {
         return sprintf('%s/%s', $this->webDirectory, $this->generate($configName, $filename, $additionalData));
     }

@@ -1,51 +1,31 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 1:06 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Upload;
 
 use NS\FileUploadBundle\Exceptions\ConfigNotFoundException;
 use NS\FileUploadBundle\Exceptions\UnableToHandleException;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Handler
 {
     /** @var Config[] */
-    private $configs = [];
+    private array $configs = [];
 
-    /** @var string */
-    private $uploadDirectory;
+    private string $uploadDirectory;
 
-    /**
-     * @param string $uploadDirectory
-     */
-    public function __construct($uploadDirectory)
+    public function __construct(string $uploadDirectory)
     {
         $this->uploadDirectory = $uploadDirectory;
     }
 
-    /**
-     * @param $name
-     * @param Config $config
-     */
-    public function addConfig($name, Config $config)
+    public function addConfig(string $name, Config $config): void
     {
         $this->configs[$name] = $config;
     }
 
-    /**
-     * @param $configName
-     * @param UploadedFile $file
-     * @param null $additionalData
-     *
-     * @return \Symfony\Component\HttpFoundation\File\File
-     */
-    public function upload($configName, UploadedFile $file, $additionalData = null)
+    public function upload(string $configName, UploadedFile $file, $additionalData = null): File
     {
         if (!isset($this->configs[$configName])) {
             throw new ConfigNotFoundException($configName);

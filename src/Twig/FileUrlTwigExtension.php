@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 4:37 PM
- */
+<?php declare(strict_types = 1);
 
 namespace NS\FileUploadBundle\Twig;
 
@@ -14,38 +8,22 @@ use Twig\TwigFunction;
 
 class FileUrlTwigExtension extends AbstractExtension
 {
-    /** @var FileUrlGeneratorInterface */
-    private $urlGenerator;
+    private FileUrlGeneratorInterface $urlGenerator;
 
-    /**
-     * FileUrlTwigExtension constructor.
-     * @param FileUrlGeneratorInterface $urlGenerator
-     */
     public function __construct(FileUrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('file_path',[$this,'getFileUrl'],['is_safe'=>['html']])
         ];
     }
 
-    public function getFileUrl($configName, $filename, $additionalData = null)
+    public function getFileUrl($configName, $filename, $additionalData = null): string
     {
         return $this->urlGenerator->generate($configName, rawurlencode($filename), $additionalData);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName()
-    {
-        return 'ns_file.file_url_twig';
     }
 }

@@ -8,10 +8,7 @@ use Symfony\Component\Form\FormView;
 
 class FileType extends ParentFileType
 {
-    /**
-     * @inheritDoc
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $orgValue = $view->vars['value'];
         parent::buildView($view, $form, $options);
