@@ -12,14 +12,14 @@
     ],
     "require": {
         "php":                       ">=8.1",
-        "symfony/framework-bundle":  "^6.0",
-        "symfony/form":              "^6.0",
-        "symfony/asset":             "^6.0",
+        "symfony/framework-bundle":  "^6.0|^7.0",
+        "symfony/form":              "^6.0|^7.0",
+        "symfony/asset":             "^6.0|^7.0",
         "twig/twig":                 "^2.0||^3.0",
         "ircmaxell/random-lib":      "^1.1"
     },
     "require-dev": {
-        "symfony/http-foundation": "^6.0",
+        "symfony/http-foundation": "^6.0|^7.0",
         "phpunit/phpunit": "^9.5",
         "liip/rmt": "^1.7"
     },

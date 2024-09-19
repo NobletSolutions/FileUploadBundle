@@ -1,10 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gnat
- * Date: 19/08/16
- * Time: 5:13 PM
- */
+<?php declare(strict_types=1);
 
 namespace NS\FileUploadBundle\DependencyInjection\CompilerPass;
 
@@ -16,10 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ConfigCompilerPass implements CompilerPassInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         // always first check if the primary service is defined
         if (!$container->has('ns_file.upload_handler') || !$container->has('ns_file.url_generator.default')) {

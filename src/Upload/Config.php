@@ -29,7 +29,6 @@ class Config
 
     /**
      * @param $additionalData
-     * @return string
      */
     public function getPath($additionalData = null): string
     {
